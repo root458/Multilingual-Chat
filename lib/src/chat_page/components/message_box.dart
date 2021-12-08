@@ -9,27 +9,14 @@ class MessageBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment:
-          message.isMine ? MainAxisAlignment.end : MainAxisAlignment.start,
-      // ignore: prefer_const_literals_to_create_immutables
-      children: [
-        Flexible(
-          flex: 2,
-          child: Container(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text(
-                message.messageText,
-                style: const TextStyle(fontSize: 20.0, color: Colors.white),
-                overflow: TextOverflow.visible,
-              ),
-            ),
-            decoration: _determineDeco(message),
-          ),
-        ),
-        const Flexible(flex: 1, child: Text(''))
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 0.0),
+      child: Row(
+        mainAxisAlignment:
+            message.isMine ? MainAxisAlignment.end : MainAxisAlignment.start,
+        // ignore: prefer_const_literals_to_create_immutables
+        children: _determineOrientation(message),
+      ),
     );
   }
 
@@ -46,7 +33,10 @@ class MessageBox extends StatelessWidget {
       );
     } else {
       return BoxDecoration(
-        color: kAccent,
+        color: kSecondary,
+        border: Border.all(
+          color: kAccent
+        ),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),
@@ -56,4 +46,55 @@ class MessageBox extends StatelessWidget {
       );
     }
   }
+
+
+  List<Widget> _determineOrientation(Message message) {
+    if (message.isMine) {
+      return [
+          const Flexible(flex: 1, child: Text('')),
+          Flexible(
+            flex: 2,
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text(
+                  message.messageText,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: message.isMine ? Colors.white : kAccent, 
+                  ),
+                  overflow: TextOverflow.visible,
+                ),
+              ),
+              decoration: _determineDeco(message),
+            ),
+          ),
+          
+        ];
+    }
+    else {
+      return [
+          Flexible(
+            flex: 2,
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text(
+                  message.messageText,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: message.isMine ? Colors.white : kAccent, 
+                  ),
+                  overflow: TextOverflow.visible,
+                ),
+              ),
+              decoration: _determineDeco(message),
+            ),
+          ),
+          const Flexible(flex: 1, child: Text(''))
+        ];
+    }
+  }
+
+
 }

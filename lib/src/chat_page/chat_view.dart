@@ -9,21 +9,59 @@ class ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var m1 = const Message(messageText: 'Hello', isMine: true);
-    var m2 = const Message(messageText: 'Hey sir', isMine: false);
-
+    var m1 = const Message(messageText: "Hello", isMine: true);
+    var m2 = const Message(
+        messageText: "Hey sir. I'm fine. Thanks for asking!", isMine: false);
+    var m3 = const Message(
+        messageText: "Great. How far had we progressed?", isMine: true);
+    var m4 = const Message(messageText: "Hello", isMine: false);
 
     return Scaffold(
       backgroundColor: kSecondary,
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-            // ignore: prefer_const_literals_to_create_immutables
+      bottomNavigationBar: Transform.translate(
+        offset: Offset(0.0, -1 * MediaQuery.of(context).viewInsets.bottom),
+        child: BottomAppBar(
+          elevation: 30.0,
+          color: kSecondary,
+          child: Row(
             children: [
-              const Icon(Icons.mic),
-              const Spacer(),
-              const Icon(Icons.reply_all),
-              const Icon(Icons.send)
-            ]),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Icon(
+                  Icons.mic,
+                  color: Colors.white,
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: kMain,
+                  shape: const CircleBorder(),
+                ),
+              ),
+              const Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                    hintText: "Message",
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Icon(
+                  Icons.send,
+                  color: Colors.white,
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: kMain,
+                  shape: const CircleBorder(),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
       appBar: AppBar(
         backgroundColor: kMain,
@@ -31,11 +69,24 @@ class ChatView extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+        child: ListView(
+          physics: const BouncingScrollPhysics(),
+          reverse: true,
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 0.0),
+          // Here the latest message should be at the top. Earlier messages below
           children: [
+            MessageBox(message: m4),
+            MessageBox(message: m3),
+            MessageBox(message: m2),
+            MessageBox(message: m3),
+            MessageBox(message: m2),
+            MessageBox(message: m3),
+            MessageBox(message: m2),
+            MessageBox(message: m3),
+            MessageBox(message: m2),
+            MessageBox(message: m3),
+            MessageBox(message: m2),
             MessageBox(message: m1),
-            MessageBox(message: m2)
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.suis.multilingual_chat.multilingual_chat">
    <application
-        android:label="multilingual_chat"
+        android:label="Multilingual Chat"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
