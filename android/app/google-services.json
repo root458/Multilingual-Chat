@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "964978363916",
+    "project_id": "multilingual-chat-app-project",
+    "storage_bucket": "multilingual-chat-app-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964978363916:android:d3b3d8b738aa713b106829",
+        "android_client_info": {
+          "package_name": "com.suis.multilingual_chat.multilingual_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964978363916-8e9k0ofkfvfdobpvkqjqg05tihmdd7ap.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.suis.multilingual_chat.multilingual_chat",
+            "certificate_hash": "d2b185075db1e5a72a146e0f3aac204d7c77125d"
+          }
+        },
+        {
+          "client_id": "964978363916-pgvu8cqhcub85bt69vj7n9uhjns8qipc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvNaejwe3ZSD2NtU_TAWDK5cwQcJNdYWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964978363916-pgvu8cqhcub85bt69vj7n9uhjns8qipc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

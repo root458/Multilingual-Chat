@@ -7,6 +7,8 @@ import 'components/appbar_style.dart';
 class ChatView extends StatelessWidget {
   const ChatView({Key? key}) : super(key: key);
 
+  static const routeName = '/chatview';
+
   @override
   Widget build(BuildContext context) {
     var m1 = const Message(messageText: "Hello", isMine: true);
@@ -17,79 +19,88 @@ class ChatView extends StatelessWidget {
     var m4 = const Message(messageText: "Hello", isMine: false);
 
     return Scaffold(
-      backgroundColor: kSecondary,
-      bottomNavigationBar: Transform.translate(
-        offset: Offset(0.0, -1 * MediaQuery.of(context).viewInsets.bottom),
-        child: BottomAppBar(
-          elevation: 30.0,
-          color: kSecondary,
-          child: Row(
-            children: [
-              ElevatedButton(
-                onPressed: () {},
-                child: const Icon(
-                  Icons.mic,
-                  color: Colors.white,
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: kMain,
-                  shape: const CircleBorder(),
-                ),
-              ),
-              const Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                    hintText: "Message",
+        resizeToAvoidBottomInset: true,
+        backgroundColor: kSecondary,
+        bottomNavigationBar: Transform.translate(
+          offset: Offset(0.0, -1 * MediaQuery.of(context).viewInsets.bottom),
+          child: BottomAppBar(
+            elevation: 30.0,
+            child: Container(
+              color: kSecondary,
+              child: Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Icon(
+                      Icons.mic,
+                      color: Colors.white,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: kMain,
+                      shape: const CircleBorder(),
+                    ),
                   ),
-                ),
+                  const Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                        hintText: "Message",
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Icon(
+                      Icons.send,
+                      color: Colors.white,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: kMain,
+                      shape: const CircleBorder(),
+                    ),
+                  ),
+                ],
               ),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Icon(
-                  Icons.send,
-                  color: Colors.white,
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: kMain,
-                  shape: const CircleBorder(),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
-      ),
-      appBar: AppBar(
-        backgroundColor: kMain,
-        title: const CustomAppBar(),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          physics: const BouncingScrollPhysics(),
-          reverse: true,
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 0.0),
-          // Here the latest message should be at the top. Earlier messages below
-          children: [
-            MessageBox(message: m4),
-            MessageBox(message: m3),
-            MessageBox(message: m2),
-            MessageBox(message: m3),
-            MessageBox(message: m2),
-            MessageBox(message: m3),
-            MessageBox(message: m2),
-            MessageBox(message: m3),
-            MessageBox(message: m2),
-            MessageBox(message: m3),
-            MessageBox(message: m2),
-            MessageBox(message: m1),
-          ],
+        appBar: AppBar(
+          backgroundColor: kMain,
+          title: const CustomAppBar(),
         ),
-      ),
-    );
+        body: Column(
+          children: [
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView(
+                  // physics: const BouncingScrollPhysics(),
+                  reverse: true,
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 0.0),
+                  // Here the latest message should be at the top. Earlier messages below
+                  children: [
+                    MessageBox(message: m4),
+                    MessageBox(message: m3),
+                    MessageBox(message: m2),
+                    MessageBox(message: m3),
+                    MessageBox(message: m2),
+                    MessageBox(message: m3),
+                    MessageBox(message: m2),
+                    MessageBox(message: m3),
+                    MessageBox(message: m2),
+                    MessageBox(message: m3),
+                    MessageBox(message: m2),
+                    MessageBox(message: m1),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 }
