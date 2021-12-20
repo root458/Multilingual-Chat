@@ -8,6 +8,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    // Screen dimensions variables
     var size = MediaQuery.of(context).size;
     double _extent = size.height / 9.5;
 
@@ -51,12 +53,12 @@ class HomePage extends StatelessWidget {
                     subtitle: const Text("Haloa"),
                     onTap: () {
                       // Navigate to the details page. If the user leaves and returns to
-              // the app after it has been killed while running in the
-              // background, the navigation stack is restored.
-              Navigator.restorablePushNamed(
-                context,
-                ChatView.routeName,
-              );
+                      // the app after it has been killed while running in the
+                      // background, the navigation stack is restored.
+                      Navigator.restorablePushNamed(
+                        context,
+                        ChatView.routeName,
+                      );
                     },
                   );
                 },

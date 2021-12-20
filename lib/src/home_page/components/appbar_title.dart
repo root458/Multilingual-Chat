@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:multilingual_chat/constants/constants.dart';
+import 'package:multilingual_chat/services/auth.dart';
+import 'package:provider/provider.dart';
 
 class CustomAppBarTitle extends StatelessWidget {
   const CustomAppBarTitle({Key? key, required context}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Auth service
+    final _auth = Provider.of<AuthService>(context);
+    // final _auth = context.watch<AuthService>();
+    // Screen dimensions
+  
     var size = MediaQuery.of(context).size;
 
     return Container(
@@ -27,18 +34,44 @@ class CustomAppBarTitle extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Icon(
-              Icons.search,
-              color: Colors.white,
+          children: [
+            CircleAvatar(
+              radius: 17.0,
+              backgroundImage: NetworkImage(
+                _auth.user.photoUrl ??
+                    'https://images.app.goo.gl/tGR3mMzQkNyDgeWd9',
+              ),
             ),
-            Text(
+            const Text(
               'Search chats',
               style: TextStyle(color: Colors.white, fontSize: 20.0),
             ),
-            Icon(
-              Icons.more_vert,
-              color: Colors.white,
+            PopupMenuButton(
+              color: kSecondary,
+              itemBuilder: (context) => [
+                PopupMenuItem<int>(
+                    value: 0,
+                    child: Row(
+                      children: const [
+                        Icon(
+                          Icons.logout,
+                          color: Colors.red,
+                        ),
+                        SizedBox(
+                          width: 7,
+                        ),
+                        Text(
+                          "Logout",
+                          style: TextStyle(
+                            color: Colors.red,
+                          ),
+                        )
+                      ],
+                    )),
+              ],
+              onSelected: (value) async {
+                await _auth.logout();
+              },
             ),
           ],
         ),
