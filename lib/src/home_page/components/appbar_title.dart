@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:multilingual_chat/constants/constants.dart';
 import 'package:multilingual_chat/services/auth.dart';
+import 'package:multilingual_chat/services/system_services.dart';
 import 'package:provider/provider.dart';
 
 class CustomAppBarTitle extends StatelessWidget {
@@ -12,7 +13,7 @@ class CustomAppBarTitle extends StatelessWidget {
     final _auth = Provider.of<AuthService>(context);
     // final _auth = context.watch<AuthService>();
     // Screen dimensions
-  
+
     var size = MediaQuery.of(context).size;
 
     return Container(
@@ -42,10 +43,25 @@ class CustomAppBarTitle extends StatelessWidget {
                     'https://images.app.goo.gl/tGR3mMzQkNyDgeWd9',
               ),
             ),
-            const Text(
-              'Search chats',
-              style: TextStyle(color: Colors.white, fontSize: 20.0),
-            ),
+            StreamBuilder<DateTime>(
+                stream: SystemServices().timeNow(),
+                initialData: DateTime.now(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.active) {
+                    var time = snapshot.data;
+
+                    return Text(
+                      _determineGreeting(time!),
+                      style:
+                          const TextStyle(color: Colors.white, fontSize: 20.0),
+                    );
+                  } else {
+                    return const Text(
+                      'Hello',
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    );
+                  }
+                }),
             PopupMenuButton(
               color: kSecondary,
               itemBuilder: (context) => [
@@ -77,5 +93,24 @@ class CustomAppBarTitle extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _determineGreeting(DateTime time) {
+    var now = time;
+    var four59am = DateTime(now.year, now.month, now.day, 4, 59);
+    var noon = DateTime(now.year, now.month, now.day, 12, 0);
+    var four59pm = DateTime(now.year, now.month, now.day, 16, 59);
+
+    String greeting;
+    if (now.isAfter(four59am) && now.isBefore(noon)) {
+      greeting = 'Good morning';
+    } else if ((now.isAtSameMomentAs(noon) || now.isAfter(noon)) &&
+        (now.isAtSameMomentAs(four59pm) || now.isBefore(four59pm))) {
+      greeting = 'Good afternoon';
+    } else {
+      greeting = 'Good evening';
+    }
+
+    return greeting;
   }
 }
