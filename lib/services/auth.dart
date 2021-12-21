@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:multilingual_chat/services/database_services.dart';
 import 'models/user.dart';
 
 class AuthService {
@@ -22,19 +23,24 @@ class AuthService {
       final googleUser = await googleSignIn.signIn();
       if (googleUser == null) return;
       _user = googleUser;
-      // Create custom user
-      _customUser = CustomUser(
-          uid: _user!.id,
-          displayName: _user?.displayName,
-          email: _user!.email,
-          photoUrl: _user?.photoUrl);
 
       final googleAuth = await googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
-      await _auth.signInWithCredential(credential);
+      UserCredential userCredential = await _auth.signInWithCredential(credential);
+      // Create custom user
+      _customUser = CustomUser(
+          uid: userCredential.user!.uid,
+          displayName: _user?.displayName,
+          email: _user!.email,
+          photoUrl: _user?.photoUrl);
+
+      // Initialize data
+      final databaseService = DatabaseService(uid: _customUser!.uid);
+      await databaseService.updateUserData(_customUser!.properties);
+      // await databaseService.appendToUsersList(_customUser!.properties, []);
     } catch (e) {
       // Do nothing
     }
