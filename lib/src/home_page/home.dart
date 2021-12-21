@@ -4,6 +4,7 @@ import 'package:multilingual_chat/services/auth.dart';
 import 'package:multilingual_chat/src/home_page/components/appbar_title.dart';
 import 'package:multilingual_chat/src/home_page/components/chat_tiles.dart';
 import 'package:multilingual_chat/src/home_page/components/sliver_components.dart';
+import 'package:multilingual_chat/src/home_page/components/users_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,7 +12,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+
     // Screen dimensions variables
     var size = MediaQuery.of(context).size;
     double _extent = size.height / 9.5;
@@ -21,11 +22,11 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: kMain,
-        onPressed: () async {
+        onPressed: () {
           // Navigate to the details page. If the user leaves and returns to
           // the app after it has been killed while running in the
           // background, the navigation stack is restored.
-          await _auth.logout();
+          showUsersToChat(context);
           // Navigator.restorablePushNamed(
           //   context,
           //   ChatView.routeName,
@@ -43,9 +44,10 @@ class HomePage extends StatelessWidget {
             title: CustomAppBarTitle(context: context),
           ),
           TitleSection('MESSAGES'),
-          ChatTiles(context, _extent),
+          ChatTiles(context, _extent, _auth),
         ],
       ),
     );
+
   }
 }

@@ -27,6 +27,10 @@ class DatabaseService {
     return userDetails;
   }
 
+  // Get users
+  Stream<QuerySnapshot> get availableUsers {
+    return usersCollection.snapshots();
+  }
 }
 
 // // One function for both

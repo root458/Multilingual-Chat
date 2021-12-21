@@ -108,9 +108,6 @@ class CustomAppBarTitle extends StatelessWidget {
           } else {
             return const CircleAvatar(
               radius: 17.0,
-              backgroundImage: NetworkImage(
-                'https://images.app.goo.gl/tGR3mMzQkNyDgeWd9',
-              ),
             );
           }
         },
@@ -118,9 +115,6 @@ class CustomAppBarTitle extends StatelessWidget {
     } catch (e) {
       return const CircleAvatar(
         radius: 17.0,
-        backgroundImage: NetworkImage(
-          'https://images.app.goo.gl/tGR3mMzQkNyDgeWd9',
-        ),
       );
     }
   }

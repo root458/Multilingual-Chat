@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:multilingual_chat/services/database_services.dart';
 import 'models/user.dart';
 
-class AuthService {
+class AuthService extends ChangeNotifier {
   // Instance of Firebase
   final FirebaseAuth _auth = FirebaseAuth.instance;
   // Instance of Google Sign In
@@ -29,7 +30,9 @@ class AuthService {
       final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
-      UserCredential userCredential = await _auth.signInWithCredential(credential);
+      UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+
       // Create custom user
       _customUser = CustomUser(
           uid: userCredential.user!.uid,
@@ -41,6 +44,7 @@ class AuthService {
       final databaseService = DatabaseService(uid: _customUser!.uid);
       await databaseService.updateUserData(_customUser!.properties);
       // await databaseService.appendToUsersList(_customUser!.properties, []);
+      notifyListeners();
     } catch (e) {
       // Do nothing
     }
