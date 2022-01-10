@@ -9,9 +9,6 @@ class DatabaseService {
   final CollectionReference usersCollection =
       FirebaseFirestore.instance.collection('users');
 
-  //////////////////////////////////////////////////////
-  ///                     USER                       ///
-  /// //////////////////////////////////////////////////
 
   // Update user data
   Future updateUserData(Map<String, String?> details) async {

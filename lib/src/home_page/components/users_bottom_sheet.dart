@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:multilingual_chat/constants/constants.dart';
 import 'package:multilingual_chat/services/auth.dart';
 import 'package:multilingual_chat/services/chat_data_provider.dart';
+import 'package:multilingual_chat/services/chat_database_service.dart';
 import 'package:multilingual_chat/services/database_services.dart';
 import 'package:multilingual_chat/services/models/user.dart';
 import 'package:multilingual_chat/src/chat_page/chat_view.dart';
@@ -62,21 +63,66 @@ void showUsersToChat(BuildContext context, double height, AuthService auth) {
                             title: Text(availableUsers[index].displayName ?? '',
                                 style: const TextStyle(
                                     overflow: TextOverflow.ellipsis)),
-                            onTap: () {
+                            subtitle: Text(availableUsers[index].email ?? '',
+                                style: const TextStyle(
+                                    overflow: TextOverflow.ellipsis)),
+                            onTap: () async {
                               // Determine chat doc
                               String chatDoc = getChatDoc(
                                   availableUsers[index].displayName,
                                   auth.user.displayName ?? '');
 
-                              // Pop bottom sheet
-                              Navigator.pop(context);
+                              // Initialize data if doc does not exist
+                              final _chatDatabaseService =
+                                  ChatDatabaseService();
+
+                              // Sort to get person1 and person2
+                              List userNames = [
+                                availableUsers[index].displayName,
+                                auth.user.displayName
+                              ];
+
+                              userNames.sort();
+
+                              CustomUser person1, person2;
+
+                              if (auth.user.displayName == userNames[0]) {
+                                person1 = auth.user;
+                                person2 = availableUsers[index];
+                              } else {
+                                person2 = auth.user;
+                                person1 = availableUsers[index];
+                              }
+
+                              await _chatDatabaseService
+                                  .initializeChat(chatDoc, {
+                                'person1': <Map>[],
+                                'person2': <Map>[],
+                                'latest_message': 'No messages :-)',
+                                'person1 details': [
+                                  person1.uid,
+                                  person1.displayName,
+                                  person1.email,
+                                  person1.photoUrl
+                                ],
+                                'person2 details': [
+                                  person2.uid,
+                                  person2.displayName,
+                                  person2.email,
+                                  person2.photoUrl
+                                ],
+                              });
 
                               // Route to chat view page, with user data
                               // Selected user, chatDoc name, set using provider
-                              final chatData = Provider.of<ChatData>(context, listen: false);
+                              final chatData =
+                                  Provider.of<ChatData>(context, listen: false);
                               chatData.setChatData(
                                   availableUsers[index], chatDoc);
 
+                              // Pop bottom sheet
+                              Navigator.pop(context);
+                              // Route to Chat view
                               Navigator.restorablePushNamed(
                                 context,
                                 ChatView.routeName,
