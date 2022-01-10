@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:multilingual_chat/constants/constants.dart';
+import 'package:multilingual_chat/services/chat_data_provider.dart';
 import 'package:multilingual_chat/src/chat_page/components/message_box.dart';
 import 'package:multilingual_chat/src/chat_page/components/message_model.dart';
+import 'package:provider/provider.dart';
 import 'components/appbar_style.dart';
 
 class ChatView extends StatelessWidget {
@@ -11,6 +13,10 @@ class ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // Data
+    final chatData = Provider.of<ChatData>(context);
+    
     var m1 = const Message(messageText: "Hello", isMine: true);
     var m2 = const Message(
         messageText: "Hey sir. I'm fine. Thanks for asking!", isMine: false);
@@ -70,7 +76,7 @@ class ChatView extends StatelessWidget {
         ),
         appBar: AppBar(
           backgroundColor: kMain,
-          title: const CustomAppBar(),
+          title: CustomAppBar(chatData: chatData,),
         ),
         body: Column(
           children: [

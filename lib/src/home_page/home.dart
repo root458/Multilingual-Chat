@@ -12,10 +12,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    // Data
     // Screen dimensions variables
     var size = MediaQuery.of(context).size;
-    double _extent = size.height / 9.5;
+    double _extent = size.height;
 
     final _auth = Provider.of<AuthService>(context);
 
@@ -23,10 +23,7 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: kMain,
         onPressed: () {
-          // Navigate to the details page. If the user leaves and returns to
-          // the app after it has been killed while running in the
-          // background, the navigation stack is restored.
-          showUsersToChat(context);
+          showUsersToChat(context, _extent, _auth);
           // Navigator.restorablePushNamed(
           //   context,
           //   ChatView.routeName,
@@ -44,10 +41,9 @@ class HomePage extends StatelessWidget {
             title: CustomAppBarTitle(context: context),
           ),
           TitleSection('MESSAGES'),
-          ChatTiles(context, _extent, _auth),
+          ChatTiles(context, (_extent / 9.5), _auth),
         ],
       ),
     );
-
   }
 }

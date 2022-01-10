@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:multilingual_chat/constants/constants.dart';
 import 'package:multilingual_chat/services/auth.dart';
+import 'package:multilingual_chat/services/chat_data_provider.dart';
 import 'package:multilingual_chat/services/screen/wrapper.dart';
 import 'package:multilingual_chat/src/chat_page/chat_view.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
           providers: [
             ChangeNotifierProvider<AuthService>(
               create: (context) => AuthService(),
+            ),
+            ChangeNotifierProvider<ChatData>(
+              create: (context) => ChatData(),
             ),
           ],
           child: MaterialApp(

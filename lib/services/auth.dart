@@ -54,6 +54,7 @@ class AuthService extends ChangeNotifier {
   Future logout() async {
     await googleSignIn.disconnect();
     _auth.signOut();
+    notifyListeners();
   }
 
   // Stream to listen for auth changes
