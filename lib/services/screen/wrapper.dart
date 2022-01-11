@@ -21,7 +21,19 @@ class Wrapper extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final loggedUser = snapshot.data;
-          return loggedUser != null ? const HomePage() : const SignInScreen();
+          if (loggedUser != null) {
+            try {
+              // Test if user is null, if null show sign in page
+              // ignore: unused_local_variable
+              var thisUser = auth.user;
+              return const HomePage();
+            } catch (e) {
+              return const SignInScreen();
+            } 
+          }
+          else {
+            return const SignInScreen();
+          }
         }
         return const LoadingScreen();
       },

@@ -46,7 +46,6 @@ void showUsersToChat(BuildContext context, double height, AuthService auth) {
                                     : true,
                             leading: availableUsers[index].photoUrl == null
                                 ? CircleAvatar(
-                                    radius: 35.0,
                                     backgroundColor: kMain,
                                     child: Text(
                                       availableUsers[index].displayName![0],
