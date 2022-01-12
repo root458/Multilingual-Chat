@@ -5,6 +5,7 @@ import 'package:multilingual_chat/constants/constants.dart';
 import 'package:multilingual_chat/services/auth.dart';
 import 'package:multilingual_chat/services/chat_data_provider.dart';
 import 'package:multilingual_chat/services/screen/wrapper.dart';
+import 'package:multilingual_chat/services/translation_service.dart';
 import 'package:multilingual_chat/src/chat_page/chat_view.dart';
 import 'package:provider/provider.dart';
 import 'sample_feature/sample_item_details_view.dart';
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider<ChatData>(
               create: (context) => ChatData(),
             ),
+            ChangeNotifierProvider<LanguageCodeService>(
+              create: (context) => LanguageCodeService(),
+            )
           ],
           child: MaterialApp(
             title: "Multilingual Chat",
@@ -47,7 +51,7 @@ class MyApp extends StatelessWidget {
             // returns to the app after it has been killed while running in the
             // background.
             restorationScopeId: 'Chat',
-        
+
             // Provide the generated AppLocalizations to the MaterialApp. This
             // allows descendant Widgets to display the correct translations
             // depending on the user's locale.
@@ -60,7 +64,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: const [
               Locale('en', ''), // English, no country code
             ],
-        
+
             // Use AppLocalizations to configure the correct application title
             // depending on the user's locale.
             //
@@ -68,7 +72,7 @@ class MyApp extends StatelessWidget {
             // directory.
             onGenerateTitle: (BuildContext context) =>
                 AppLocalizations.of(context)!.appTitle,
-        
+
             // Define a light and dark color theme. Then, read the user's
             // preferred ThemeMode (light, dark, or system default) from the
             // SettingsController to display the correct theme.
@@ -78,7 +82,7 @@ class MyApp extends StatelessWidget {
             ),
             darkTheme: ThemeData.dark(),
             themeMode: settingsController.themeMode,
-        
+
             // Define a function to handle named routes in order to support
             // Flutter web url navigation and deep linking.
             onGenerateRoute: (RouteSettings routeSettings) {

@@ -4,6 +4,7 @@ import 'package:multilingual_chat/constants/constants.dart';
 import 'package:multilingual_chat/services/auth.dart';
 import 'package:multilingual_chat/services/chat_data_provider.dart';
 import 'package:multilingual_chat/services/chat_database_service.dart';
+import 'package:multilingual_chat/services/translation_service.dart';
 import 'package:multilingual_chat/src/chat_page/components/message_box.dart';
 import 'package:multilingual_chat/src/chat_page/components/message_model.dart';
 import 'package:provider/provider.dart';
@@ -89,7 +90,8 @@ class ChatView extends StatelessWidget {
 
                       // Write change to Database
                       await _chatDatabaseService.sendMessage(
-                          [messageToBeSent['text'], _auth.user.email], _messagesCopy);
+                          [messageToBeSent['text'], _auth.user.email],
+                          _messagesCopy);
 
                       // Clear text field
                       _textFieldController.clear();
@@ -116,6 +118,21 @@ class ChatView extends StatelessWidget {
         title: CustomAppBar(
           chatData: chatData,
         ),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            icon: const Icon(
+              Icons.language,
+              color: Colors.white,
+            ),
+            color: kSecondary,
+            itemBuilder: (context) => popUpMenuItems,
+            onSelected: (value) {
+              // Change langauge code
+              Provider.of<LanguageCodeService>(context, listen: false)
+                  .changeLanguageCode(value);
+            },
+          ),
+        ],
       ),
       body: StreamBuilder<List>(
           stream: _chatDatabaseService.singleChat,
@@ -143,22 +160,16 @@ class ChatView extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
                 // Here, the latest message should be first. Earlier messages last
                 itemBuilder: (context, index) {
-                  return MessageBox(message: messages[index]);
+                  return MessageBox(
+                    message: messages[index],
+                  );
                 },
               );
             } else {
-              return Scaffold(
-                appBar: AppBar(
-                  backgroundColor: kMain,
-                  title: CustomAppBar(
-                    chatData: chatData,
-                  ),
-                ),
-                body: Center(
-                  child: SpinKitChasingDots(
-                    color: kAccent,
-                    size: 50.0,
-                  ),
+              return Center(
+                child: SpinKitChasingDots(
+                  color: kAccent,
+                  size: 50.0,
                 ),
               );
             }
