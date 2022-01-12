@@ -95,9 +95,8 @@ void showUsersToChat(BuildContext context, double height, AuthService auth) {
 
                               await _chatDatabaseService
                                   .initializeChat(chatDoc, {
-                                'person1': <Map>[],
-                                'person2': <Map>[],
-                                'latest_message': 'No messages :-)',
+                                'messages': <Map>[],
+                                'latest_message': ['.', auth.user.email],
                                 'person1 details': [
                                   person1.uid,
                                   person1.displayName,

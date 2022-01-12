@@ -19,7 +19,10 @@ class ChatTiles extends SliverFixedExtentList {
                   chats[index].user.displayName,
                   style: const TextStyle(overflow: TextOverflow.ellipsis),
                 ),
-                subtitle: Text(chats[index].latestMessage,
+                subtitle: Text(
+                    auth.user.email == chats[index].latestMessage[1]
+                        ? 'You: ${chats[index].latestMessage[0]}'
+                        : chats[index].latestMessage[0],
                     style: const TextStyle(overflow: TextOverflow.ellipsis)),
                 onTap: () {
                   // Set data on ChatData service

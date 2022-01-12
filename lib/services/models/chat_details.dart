@@ -1,7 +1,7 @@
 import 'package:multilingual_chat/services/models/user.dart';
 
 class ChatDetails {
-  String latestMessage;
+  List latestMessage;
   CustomUser user;
 
   ChatDetails(

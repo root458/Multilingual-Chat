@@ -49,8 +49,16 @@ class ChatDatabaseService {
   }
 
   // To get a user's chat, used in the chat page
-  Stream<DocumentSnapshot> get singleChat {
-    return chatsCollection.doc(singleUserChatDoc).snapshots();
+  Stream<List> get singleChat {
+    return chatsCollection
+        .doc(singleUserChatDoc)
+        .snapshots()
+        .map(_messagesListFromSnaphot);
+  }
+
+  List _messagesListFromSnaphot(DocumentSnapshot snaphot) {
+    Map _chatDoc = snaphot.data() as Map;
+    return _chatDoc['messages'];
   }
 
   // SET FUNCTIONS
@@ -62,6 +70,13 @@ class ChatDatabaseService {
       await chatsCollection.doc(chatDoc).set(details);
     }
   }
-  // Send message functions
 
+  // Send message function
+  Future sendMessage(
+      List latestMessage, List messages) async {
+    await chatsCollection.doc(singleUserChatDoc).set(<String, dynamic>{
+      'messages': messages,
+      'latest_message': latestMessage,
+    }, SetOptions(merge: true));
+  }
 }
