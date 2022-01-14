@@ -12,89 +12,89 @@ String getChatDoc(String fName, String sName) {
   return chatDoc;
 }
 
-List<PopupMenuItem<String>> popUpMenuItems = [
-  PopupMenuItem<String>(
-      value: 'off',
+List<PopupMenuItem<List<String>>> popUpMenuItems = [
+  PopupMenuItem<List<String>>(
+      value: const ['off', 'off'],
       child: Text(
         "Default",
         style: TextStyle(
           color: kMain,
         ),
       )),
-  PopupMenuItem<String>(
-      value: 'sw',
+  PopupMenuItem<List<String>>(
+      value: const ['sw', 'SW'],
       child: Text(
         "Swahili",
         style: TextStyle(
           color: kMain,
         ),
       )),
-  PopupMenuItem<String>(
-      value: 'en',
+  PopupMenuItem<List<String>>(
+      value: const ['en', 'en-GB'],
       child: Text(
         "English",
         style: TextStyle(
           color: kMain,
         ),
       )),
-  PopupMenuItem<String>(
-      value: 'fr',
+  PopupMenuItem<List<String>>(
+      value: const ['fr', 'fr-FR'],
       child: Text(
         "French",
         style: TextStyle(
           color: kMain,
         ),
       )),
-  PopupMenuItem<String>(
-      value: 'nl',
+  PopupMenuItem<List<String>>(
+      value: const ['nl', 'NL'],
       child: Text(
         "Dutch",
         style: TextStyle(
           color: kMain,
         ),
       )),
-  PopupMenuItem<String>(
-      value: 'cs',
+  PopupMenuItem<List<String>>(
+      value: const ['cs', 'cs-CZ'],
       child: Text(
         "Czech",
         style: TextStyle(
           color: kMain,
         ),
       )),
-  PopupMenuItem<String>(
-      value: 'de',
+  PopupMenuItem<List<String>>(
+      value: const ['de', 'de-DE'],
       child: Text(
         "German",
         style: TextStyle(
           color: kMain,
         ),
       )),
-  PopupMenuItem<String>(
-      value: 'it',
+  PopupMenuItem<List<String>>(
+      value: const ['it', 'it-IT'],
       child: Text(
         "Italian",
         style: TextStyle(
           color: kMain,
         ),
       )),
-  PopupMenuItem<String>(
-      value: 'ja',
+  PopupMenuItem<List<String>>(
+      value: const ['ja', 'ja-JP'],
       child: Text(
         "Japanese",
         style: TextStyle(
           color: kMain,
         ),
       )),
-  PopupMenuItem<String>(
-      value: 'pt',
+  PopupMenuItem<List<String>>(
+      value: const ['pt', 'pt-PT'],
       child: Text(
         "Portuguese",
         style: TextStyle(
           color: kMain,
         ),
       )),
-  PopupMenuItem<String>(
-      value: 'es',
+  PopupMenuItem<List<String>>(
+      value: const ['es', 'es-ES'],
       child: Text(
         "Spanish",
         style: TextStyle(

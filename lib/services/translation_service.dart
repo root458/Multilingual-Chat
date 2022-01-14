@@ -21,8 +21,8 @@ class TranslationService {
 }
 
 class LanguageCodeService with ChangeNotifier {
-  String languageCode = 'off';
-  void changeLanguageCode(String code) {
+  List<String> languageCode = ['off', 'off'];
+  void changeLanguageCode(List<String>  code) {
     languageCode = code;
     notifyListeners();
   }

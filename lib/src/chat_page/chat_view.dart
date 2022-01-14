@@ -47,7 +47,7 @@ class ChatView extends StatelessWidget {
             color: kSecondary,
             child: Row(
               children: [
-                // const RecordingMicrophone(),
+                const SizedBox(width: 10.0,),
                 Expanded(
                   child: TextFormField(
                     controller: _textFieldController,
@@ -109,7 +109,7 @@ class ChatView extends StatelessWidget {
           chatData: chatData,
         ),
         actions: <Widget>[
-          PopupMenuButton<String>(
+          PopupMenuButton<List<String>>(
             icon: const Icon(
               Icons.language,
               color: Colors.white,
