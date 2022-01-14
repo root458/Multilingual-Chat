@@ -41,37 +41,3 @@ class DatabaseService {
     }).toList();
   }
 }
-
-// // One function for both
-// Future addUser(Map<String, String?> details) async {
-//   await updateUserData(details);
-//   // DocumentSnapshot snapshot = await listOfUsers;
-//   // List<Map> signedUsers = _listOfUsersFromSnapshot(snapshot) as List<Map>;
-//   // print(signedUsers);
-//   // await appendToUsersList(details, signedUsers);
-// }
-
-// Future appendToUsersList(
-//     Map<String, String?> details, List<Map> usersList) async {
-//   // Append user to List
-//   Map map = {
-//     'displayName': details['displayName'],
-//     'photoUrl': details['photoUrl']
-//   };
-//   if (!usersList.contains(map)) {
-//     usersList.add(map);
-//   }
-//   await usersCollection.doc('users_list').set({'list': usersList});
-// }
-
-// // Get list of users
-// Future<DocumentSnapshot<Object?>> get listOfUsers async {
-//   return await usersCollection.doc('users_list').get();
-// }
-
-// // List of users from document snapshot
-// List listOfUsersFromSnapshot(DocumentSnapshot snapshot) {
-//   Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
-
-//   return data['list'];
-// }

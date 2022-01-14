@@ -8,10 +8,7 @@ import 'package:multilingual_chat/services/screen/wrapper.dart';
 import 'package:multilingual_chat/services/translation_service.dart';
 import 'package:multilingual_chat/src/chat_page/chat_view.dart';
 import 'package:provider/provider.dart';
-import 'sample_feature/sample_item_details_view.dart';
-import 'sample_feature/sample_item_list_view.dart';
 import 'settings/settings_controller.dart';
-import 'settings/settings_view.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
@@ -90,13 +87,8 @@ class MyApp extends StatelessWidget {
                 settings: routeSettings,
                 builder: (BuildContext context) {
                   switch (routeSettings.name) {
-                    case SettingsView.routeName:
-                      return SettingsView(controller: settingsController);
                     case ChatView.routeName:
                       return const ChatView();
-                    case SampleItemDetailsView.routeName:
-                      return const SampleItemDetailsView();
-                    case SampleItemListView.routeName:
                     default:
                       return const Wrapper();
                   }

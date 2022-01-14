@@ -5,6 +5,7 @@ import 'package:multilingual_chat/services/chat_database_service.dart';
 import 'package:multilingual_chat/services/models/chat_details.dart';
 import 'package:multilingual_chat/src/home_page/components/appbar_title.dart';
 import 'package:multilingual_chat/src/home_page/components/chat_tiles.dart';
+import 'package:multilingual_chat/src/home_page/components/no_charts.dart';
 import 'package:multilingual_chat/src/home_page/components/sliver_components.dart';
 import 'package:multilingual_chat/src/home_page/components/users_bottom_sheet.dart';
 import 'package:provider/provider.dart';
@@ -54,11 +55,14 @@ class HomePage extends StatelessWidget {
                   // Remove any null values
                   List<ChatDetails?> chatsWithoutNulls = chatsList!;
                   chatsWithoutNulls.removeWhere((chat) => chat == null);
-                  return ChatTiles(
-                      context, (_extent / 9.5), _auth, chatsWithoutNulls);
+                  if (chatsWithoutNulls.isNotEmpty) {
+                    return ChatTiles(
+                        context, (_extent / 9.5), _auth, chatsWithoutNulls);
+                  } else {
+                    return NoChats(context, _extent * 0.8);
+                  }
                 } else {
-                  return ChatTiles(
-                      context, (_extent / 9.5), _auth, const <ChatDetails>[]);
+                  return NoChats(context, _extent * 0.8);
                 }
               }),
         ],
