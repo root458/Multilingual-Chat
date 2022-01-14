@@ -47,18 +47,7 @@ class ChatView extends StatelessWidget {
             color: kSecondary,
             child: Row(
               children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Icon(
-                    Icons.mic,
-                    color: kMain,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    primary: kSecondary,
-                    shape: const CircleBorder(),
-                  ),
-                ),
+                // const RecordingMicrophone(),
                 Expanded(
                   child: TextFormField(
                     controller: _textFieldController,
@@ -66,6 +55,7 @@ class ChatView extends StatelessWidget {
                       // Update message onType
                       _messagePhrase = word;
                     },
+                    textCapitalization: TextCapitalization.sentences,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,
@@ -156,8 +146,8 @@ class ChatView extends StatelessWidget {
               return ListView.builder(
                 itemCount: messages.length,
                 reverse: true,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 8.0),
                 // Here, the latest message should be first. Earlier messages last
                 itemBuilder: (context, index) {
                   return MessageBox(

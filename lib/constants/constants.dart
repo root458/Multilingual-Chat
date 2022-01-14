@@ -101,12 +101,4 @@ List<PopupMenuItem<String>> popUpMenuItems = [
           color: kMain,
         ),
       )),
-  PopupMenuItem<String>(
-      value: 'zh-TW',
-      child: Text(
-        "Chinese",
-        style: TextStyle(
-          color: kMain,
-        ),
-      )),
 ];

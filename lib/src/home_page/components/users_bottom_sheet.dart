@@ -56,7 +56,6 @@ void showUsersToChat(BuildContext context, double height, AuthService auth) {
                                     backgroundImage: NetworkImage(
                                       availableUsers[index].photoUrl ?? '',
                                     ),
-                                    radius: 35.0,
                                   ),
                             tileColor: kSecondary,
                             title: Text(availableUsers[index].displayName ?? '',
