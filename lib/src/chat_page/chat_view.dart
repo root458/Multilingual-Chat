@@ -138,7 +138,8 @@ class ChatView extends StatelessWidget {
                     isMine: messageMap['sender'] == _auth.user.email);
               }).toList();
 
-              messages.insert(0, messages[0]);
+              // Insert extra message to be replaced by message form
+              messages.insert(0, const Message(messageText: 'Dummy', isMine: true));
               // Use below
               return ListView.builder(
                 itemCount: messages.length,
