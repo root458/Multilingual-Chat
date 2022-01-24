@@ -36,73 +36,68 @@ class ChatView extends StatelessWidget {
     // Latest to earliest
     late List messages;
 
+    Widget _returnMessageForm() {
+      return Row(
+        children: [
+          const SizedBox(
+            width: 10.0,
+          ),
+          Expanded(
+            child: TextFormField(
+              controller: _textFieldController,
+              onChanged: (word) {
+                // Update message onType
+                _messagePhrase = word;
+              },
+              textCapitalization: TextCapitalization.sentences,
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                hintText: "Message",
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              if (_messagePhrase != '') {
+                // Create message Map from message phrase
+                Map messageToBeSent = {
+                  'text': _messagePhrase,
+                  'sender': _auth.user.email
+                };
+
+                // Send message
+                _messagesCopy.add(messageToBeSent);
+
+                // Write change to Database
+                await _chatDatabaseService.sendMessage(
+                    [messageToBeSent['text'], _auth.user.email], _messagesCopy);
+
+                // Clear text field
+                _textFieldController.clear();
+                _messagePhrase = '';
+              }
+            },
+            child: Icon(
+              Icons.send,
+              color: kMain,
+            ),
+            style: ElevatedButton.styleFrom(
+              elevation: 0,
+              primary: kSecondary,
+              shape: const CircleBorder(),
+            ),
+          ),
+        ],
+      );
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: kSecondary,
-      bottomNavigationBar: Transform.translate(
-        offset: Offset(0.0, -1 * MediaQuery.of(context).viewInsets.bottom),
-        child: BottomAppBar(
-          elevation: 30.0,
-          child: Container(
-            color: kSecondary,
-            child: Row(
-              children: [
-                const SizedBox(width: 10.0,),
-                Expanded(
-                  child: TextFormField(
-                    controller: _textFieldController,
-                    onChanged: (word) {
-                      // Update message onType
-                      _messagePhrase = word;
-                    },
-                    textCapitalization: TextCapitalization.sentences,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      disabledBorder: InputBorder.none,
-                      hintText: "Message",
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    if (_messagePhrase != '') {
-                      // Create message Map from message phrase
-                      Map messageToBeSent = {
-                        'text': _messagePhrase,
-                        'sender': _auth.user.email
-                      };
-
-                      // Send message
-                      _messagesCopy.add(messageToBeSent);
-
-                      // Write change to Database
-                      await _chatDatabaseService.sendMessage(
-                          [messageToBeSent['text'], _auth.user.email],
-                          _messagesCopy);
-
-                      // Clear text field
-                      _textFieldController.clear();
-                      _messagePhrase = '';
-                    }
-                  },
-                  child: Icon(
-                    Icons.send,
-                    color: kMain,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    primary: kSecondary,
-                    shape: const CircleBorder(),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
       appBar: AppBar(
         backgroundColor: kMain,
         title: CustomAppBar(
@@ -142,17 +137,23 @@ class ChatView extends StatelessWidget {
                     messageText: messageMap['text'],
                     isMine: messageMap['sender'] == _auth.user.email);
               }).toList();
+
+              messages.insert(0, messages[0]);
               // Use below
               return ListView.builder(
                 itemCount: messages.length,
                 reverse: true,
-                padding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
                 // Here, the latest message should be first. Earlier messages last
                 itemBuilder: (context, index) {
-                  return MessageBox(
-                    message: messages[index],
-                  );
+                  if (index == 0) {
+                    return _returnMessageForm();
+                  } else {
+                    return MessageBox(
+                      message: messages[index],
+                    );
+                  }
                 },
               );
             } else {
