@@ -33,7 +33,7 @@ Locate the `app-release.apk` file from the directory `build/app/outputs/flutter-
 
 ## Usage
 
-On launching the application, it will require you to sign in using your [Google](accounts.google.com). You will then be able to see the home screen. Here, tap the floating bottom at the bottom to start a chat with available users. Tap the user you wish to chat with to send them a message.
+On launching the application, it will require you to sign in using your <a href="https://accounts.google.com" target="_blank">Google</a> account. You will then be able to see the home screen. Here, tap the floating bottom at the bottom to start a chat with available users. Tap the user you wish to chat with to send them a message.
 
 You are then free to use whichever language you feel like as they will be able to translate your messages if they don't understand your language.
 
@@ -41,17 +41,19 @@ You can log out by clicking the `options` button available on the app bar in the
 
 `Fun worth trying!` After translating a message, you can tap the message to listen to it as an audio. This is especially useful for long messages.
 
-`Important to note!`
+## Important to note
 -Translations are available in `Swahili, English, French, Dutch, Czech, German, Italian, Japanese, Portuguese and Spanish` only. With no audio for messages translated to Swahili :(.
 -The messages are synced across all the devices you sign in to. So no worries at all regarding backing up messages. 
 
 ## Contributing
 Contributions towards the project are welcome.
-- Specifically, improvements towards enabling persistence for the Google authentication would be highly appreciated.
+Specifically:
+- Improvements towards enabling persistence for the Google authentication would be highly appreciated.
 - Enabling localizations for the application.
 - Notifications and a mechanism to show unread messages.
 - Fit different screen sizes.
-- Identification of a Text-To-Speech engine with Swahili enabled would be a plus.
+- Speech-to-text functionality when sending a message to improve efficiency.
+- Identification of a Text-To-Speech engine with Swahili support would be a plus.
 
 ## License
 [MIT](https://github.com/root458/Suis-Flutter-Puzzle-Hack/blob/main/LICENSE)
