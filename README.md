@@ -42,8 +42,8 @@ You can log out by clicking the `options` button available on the app bar in the
 `Fun worth trying!` After translating a message, you can tap the message to listen to it as an audio. This is especially useful for long messages.
 
 ## Important to note
--Translations are available in `Swahili, English, French, Dutch, Czech, German, Italian, Japanese, Portuguese and Spanish` only. With no audio for messages translated to Swahili :(.
--The messages are synced across all the devices you sign in to. So no worries at all regarding backing up messages. 
+- Translations are available in `Swahili, English, French, Dutch, Czech, German, Italian, Japanese, Portuguese and Spanish` only. With no audio for messages translated to Swahili :(.
+- The messages are synced across all the devices you sign in to. So no worries at all regarding backing up messages. 
 
 ## Contributing
 Contributions towards the project are welcome.
