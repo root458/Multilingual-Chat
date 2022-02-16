@@ -3,7 +3,13 @@
 A Flutter messaging application that makes possible realtime communication between speakers of different languages.
 
 ## Visuals
-<img src="visuals/1.png" height="500"><img src="visuals/2.png" height="500"><img src="visuals/3.png" height="500"><img src="visuals/4.png" height="500"><img src="visuals/5.png" height="500"><img src="visuals/6.png" height="500"><img src="visuals/7.png" height="500"><img src="visuals/8.png" height="500"><img src="visuals/9.png" height="500"><img src="visuals/10.png" height="500"><img src="visuals/11.png" height="500">
+<img src="visuals/1.png" height="500"> _ <img src="visuals/2.png" height="500"> _ <img src="visuals/3.png" height="500"> _ <img src="visuals/4.png" height="500"> 
+
+<img src="visuals/5.png" height="500"> _ <img src="visuals/6.png" height="500"> _ <img src="visuals/7.png" height="500"> _ <img src="visuals/8.png" height="500"> 
+
+<img src="visuals/9.png" height="500"> _ <img src="visuals/10.png" height="500"> _ <img src="visuals/11.png" height="500">
+
+## Demo
 
 ## Installation
 A Flutter installation is required to run this project.
