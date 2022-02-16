@@ -3,21 +3,17 @@
 A Flutter messaging application that makes possible realtime communication between speakers of different languages.
 
 ## Visuals
-<video height="500" loop autoplay>
-<source src='/visuals/m_chat.mp4' type='video/mp4'>
-</video>
+<img src="visuals/m_chat.gif" height="500">
 
-
-<img src="visuals/1.png" height="500"> _ <img src="visuals/2.png" height="500"> _ <img src="visuals/3.png" height="500"> _ <img src="visuals/4.png" height="500"> 
+<br>
+<!-- <img src="visuals/1.png" height="500"> _ <img src="visuals/2.png" height="500"> _ <img src="visuals/3.png" height="500"> _ <img src="visuals/4.png" height="500"> 
 <img src="visuals/1.png" height="500"> _ <img src="visuals/2.png" height="500"> _ <img src="visuals/3.png" height="500"> 
 
-<img src="visuals/4.png" height="500"> _ <img src="visuals/5.png" height="500"> _ <img src="visuals/6.png" height="500">
+<!-- <img src="visuals/4.png" height="500"> _ <img src="visuals/5.png" height="500"> _ <img src="visuals/6.png" height="500">
 
 <img src="visuals/7.png" height="500"> _ <img src="visuals/8.png" height="500"> _ <img src="visuals/9.png" height="500">
 
-<img src="visuals/10.png" height="500"> _ <img src="visuals/11.png" height="500">
-
-## Demo
+<img src="visuals/10.png" height="500"> _ <img src="visuals/11.png" height="500"> -->
 
 ## Installation
 A Flutter installation is required to run this project.
